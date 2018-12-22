@@ -16,7 +16,7 @@ public class ApiConsumerTest {
 		ApiConsumer sut = new ApiConsumer(spy);
 		sut.fetchAll();
 
-		assertEquals(2, spy.callCount);
+		assertEquals(1, spy.callCount);
 	}
 
 	private class ThirdPartyApiSpy implements ThirdPartyApi {

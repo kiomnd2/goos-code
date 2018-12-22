@@ -39,7 +39,6 @@ public class FooCollectionTest {
 		FooCollection sut = new FooCollection();
 		sut.add(fooMock); // baz
 		sut.add(fooMock); // qux
-		sut.add(fooMock); // qux?
 
 		assertEquals("bazqux", sut.joined());
 		verify(fooMock, times(2)).bar(); // verify

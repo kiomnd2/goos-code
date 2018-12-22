@@ -1,7 +1,8 @@
-![](https://img.shields.io/github/issues/antop-dev/goos-code.svg)
-![](https://img.shields.io/github/forks/antop-dev/goos-code.svg)
-![](https://img.shields.io/github/stars/antop-dev/goos-code.svg)
-![](https://img.shields.io/github/license/antop-dev/goos-code.svg)
+![Issues](https://img.shields.io/github/issues/antop-dev/goos-code.svg)
+![Forks](https://img.shields.io/github/forks/antop-dev/goos-code.svg)
+![Stars](https://img.shields.io/github/stars/antop-dev/goos-code.svg)
+![License](https://img.shields.io/github/license/antop-dev/goos-code.svg)
+[![Build Status](https://travis-ci.com/antop-dev/goos-code.svg?branch=master)](https://travis-ci.com/antop-dev/goos-code)
 
 # goods-code
 

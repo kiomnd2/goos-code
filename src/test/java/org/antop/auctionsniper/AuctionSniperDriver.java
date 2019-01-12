@@ -7,11 +7,13 @@ import com.objogate.wl.swing.gesture.GesturePerformer;
 import org.antop.auctionsniper.ui.MainWindow;
 import org.hamcrest.CoreMatchers;
 
+
+@SuppressWarnings("unchecked")
 public class AuctionSniperDriver extends JFrameDriver {
-    public AuctionSniperDriver(int itemoutMillis) {
+    public AuctionSniperDriver(int timeoutMillis) {
         super(new GesturePerformer(),
                 JFrameDriver.topLevelFrame(named(Main.MAIN_WINDOW_NAME), showingOnScreen()),
-                new AWTEventQueueProber(itemoutMillis, 100));
+                new AWTEventQueueProber(timeoutMillis, 100));
     }
 
     public void showsSniperStatus(String statusText) {

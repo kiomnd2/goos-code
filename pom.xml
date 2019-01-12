@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <smack.version>3.2.1</smack.version>
-        <windowlicker.version>r268</windowlicker.version>
     </properties>
 
     <dependencies>
@@ -31,7 +30,7 @@
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter-engine</artifactId>
             <version>5.3.2</version>
             <scope>test</scope>
         </dependency>
@@ -41,7 +40,11 @@
             <version>2.23.4</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.googlecode.windowlicker</groupId>
+            <artifactId>windowlicker-swing</artifactId>
+            <version>r268</version>
+        </dependency>
     </dependencies>
 
 </project>

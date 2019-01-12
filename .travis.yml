@@ -9,12 +9,6 @@ branches:
 
 cache:
   directories:
-    - .autoconf
     - $HOME/.m2
 
 script: "mvn install -Dmaven.javadoc.skip=true -B -V"
-
-notifications:
-  email:
-    recipients:
-      - antop@naver.com 

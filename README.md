@@ -17,4 +17,6 @@
 
 [Coveralls.io configuration for maven projects](https://github.com/asciidoctor/asciidoctor/wiki/Coveralls.io-configuration-for-maven-projects)
 
+[Intro to JaCoCo | Baeldung](https://www.baeldung.com/jacoco)
+
 [coveralls-maven-plugin](https://github.com/trautonen/coveralls-maven-plugin)

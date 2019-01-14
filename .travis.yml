@@ -15,8 +15,9 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
-script:
+install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
+script:
+  - mvn test jacoco:report
 after_success:
-  - mvn clean org.eluder.coveralls:coveralls-maven-plugin:report
+  - mvn coveralls:report

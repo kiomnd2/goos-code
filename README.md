@@ -44,3 +44,9 @@ Server &gt; Server Setting &gt; Resource Policy
 [Intro to JaCoCo | Baeldung](https://www.baeldung.com/jacoco)
 
 [coveralls-maven-plugin](https://github.com/trautonen/coveralls-maven-plugin)
+
+[Configuring Slack notifications](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications)
+
+[The Travis Client](https://github.com/travis-ci/travis.rb)
+
+[]()

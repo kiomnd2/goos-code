@@ -1,8 +1,5 @@
 language: java
 dist: trusty
-#env:
-#  global:
-#    - secure: uiBIzziypobBKPYjvrf2ENJcB/bVOzldVTdTluHqtqs57K5ee3YBopcuVWGjemxougmieYqKjrUey7LopmVgHDzuj6IfiTRDdGFb20IEo7owZgmRmljax8SPgs9ARlV/UyAhc0U04dhPayfBRUrtzUZCm0gsIOH0Gd5OepicMssNdhI4pioSCJvFUrc23lJn9LSXFI/O3De5dJ16NXoGNWCS6iByDib0jk6x//sVMf5IGLcOW7kCCO5dLKBLIU76o6QubcRdlNdh3fxcGmQmIw6ErKrVz0LCG3UX6kAlaRiu58oXNsGtmnzRgFiJvViAt0a5SoHF3vjNHvPVvQQCsHm4tyAs6eGhnpDY0FqaDL8WC3xhpX3UwSCB5OnnG0TLNdE1HGZ4UgdGX5xIQTuGG2YOMy82jAS0ZQxLQnDjg97MNTX4+PeNPg/TTiDwdJUryDKWbVnxShtRx0ELUgLOyYOH078FeIGQ3bPlI6aznI+Y+SH411A64lNcbETcqJP+OPhZc6ZQr3IiQpwYFJ2akNvE/pm7hsWOhVxS1CeJ20WohErhoR2GaUEpj67I5bP4LtTIcIuKqfLq7hs/6cqK8MslTT+2YhJcgA3+/3Jaxajcygy5xzlDTDJMIPZlBNxQsayrMUSr7+dcUcooZ3LtE10ikfrN3piqvUK9qLoCHFc=
 jdk:
   - openjdk8
 branches:
@@ -12,14 +9,15 @@ cache:
   directories:
     - "$HOME/.m2"
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 install:
-  - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - "mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 script:
-  - mvn test jacoco:report
+  - "mvn test jacoco:report"
 after_success:
   - "mvn clean coveralls:report -DrepoToken=$COVERALLS_TOKEN"
 notifications:
-  slack:
-    secure: rb+b+kuElOe7JnFJu8lPI6hETYGJLrm7jITTiLvXg+YweDcPf9DxZQNaR77k9nO44+MSL6DgEgflmqYxURAkPYss8Ga/Np/aBCrvwT+AjuTb610rxT4aMiLFPSL7+pT9NozzGg41Bkx5BHkNr3nkYvmWLPTVlSjUpPymh0ccXT+yEZkUupYTLmLe3jKForb3MfilpLAl1nIcZvZkVAAwdFcwBDeTTmXBqXi4uAAdDU8Q058dsigjpYTp/tPxHCY2feNprdaGF5sAWVxLenSrmKsJv82t2dvqq2PXRWUaI17G0VHR40FqRCbNKzB/XwKMK5i8jlCF3jp83haiMy2DKipKLMQCNheSFfn5IFBrcdy8Rf0AdDKlhAnE1m9F6qtnD5GhoHmeE28Dsd8ElOfkeYEZEhPGte7X7y/FDg+NETTn6VNDF4G9z8CKJRscK0ROaWAJLuMx7QRT81EINP9HmIJa9lFuvxwVvnyWxiKyJz8dk0cpvxWf3cT06/7oYyRulEZJajkqDYG3y7AayJ5VsIBuprEh0vrs32924HimCSZD+uHHDZBcMyyUxVKxe1BN6gBZmtfF3G85D/1yYPLHq2S3jLI1oDLGTKVPDh3ykqXNWAtZkLld/1mIdag/sKN1Ps7bpmePQ45Yud1sKL41tC0bjvF+xwGNsy78TGQpbfI=
+  slack: any-study:BvfF5AJsm1wdcEG5l41UuoUj
+
+#    secure: rb+b+kuElOe7JnFJu8lPI6hETYGJLrm7jITTiLvXg+YweDcPf9DxZQNaR77k9nO44+MSL6DgEgflmqYxURAkPYss8Ga/Np/aBCrvwT+AjuTb610rxT4aMiLFPSL7+pT9NozzGg41Bkx5BHkNr3nkYvmWLPTVlSjUpPymh0ccXT+yEZkUupYTLmLe3jKForb3MfilpLAl1nIcZvZkVAAwdFcwBDeTTmXBqXi4uAAdDU8Q058dsigjpYTp/tPxHCY2feNprdaGF5sAWVxLenSrmKsJv82t2dvqq2PXRWUaI17G0VHR40FqRCbNKzB/XwKMK5i8jlCF3jp83haiMy2DKipKLMQCNheSFfn5IFBrcdy8Rf0AdDKlhAnE1m9F6qtnD5GhoHmeE28Dsd8ElOfkeYEZEhPGte7X7y/FDg+NETTn6VNDF4G9z8CKJRscK0ROaWAJLuMx7QRT81EINP9HmIJa9lFuvxwVvnyWxiKyJz8dk0cpvxWf3cT06/7oYyRulEZJajkqDYG3y7AayJ5VsIBuprEh0vrs32924HimCSZD+uHHDZBcMyyUxVKxe1BN6gBZmtfF3G85D/1yYPLHq2S3jLI1oDLGTKVPDh3ykqXNWAtZkLld/1mIdag/sKN1Ps7bpmePQ45Yud1sKL41tC0bjvF+xwGNsy78TGQpbfI=

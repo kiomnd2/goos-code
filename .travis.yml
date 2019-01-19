@@ -21,3 +21,11 @@ script:
   - mvn test jacoco:report
 after_success:
   - mvn coveralls:report
+
+notifications:
+  slack:
+    rooms:
+      -secure: FYgAeWqGONIHE7J7UgNEKTKqLHeWXWLQU1VpX66c5cs0nyFIb0vkTd9kvsmr8HJlhZKoOtmRBAuTs45CjJvKLm0RRkDY7a8UdzZYfg2Jtk/4lUd9qMXj5ix4OlgL84bg96UsSU2aBJ5+IY9eHSeHIx0oWu4Db6/uOKyWyeA6oP53LDLbBLFDz5W15jatCxin5GMtskehaYfXwFS/tI3SRORUTEP94Y6Z3QhCQ1UKOPKmrkACRtXyMksIBM9gBOf6WsNQ/Zj20J5FGCzDX+FhUmWPEVqTRVph1Bw7Vi0YROKvXJZ57b+ZZ3XVGbBHMBEX14+VVyg4gfNZFWGSe2JdP74XcFyLotBy+sJqXzjRnt+jW9LjXsa94vhBc+UPebmIMa/WhgSm53M7PVqxwrj6H9XDRENgM9f9IfL8qDvox0PaVmDiQ7YVh+fx+Z7Lv9Ioa00iN09laGOi/Nw3kRcCfldWAUPqD1cp6JwuCaJ9N2lMNBA4w3xXgr93ETADmmylNxsr6dpgzUEIDo/tV+TAV9uciUYQZXRsffsaE6a32P4Ab5jgp1xNNTHA1TZqn0nSvJVe1L0txsV8ZXCsT3JTBFRIctAYKQFIGnUeDWG/4b4EIdNj/ESl/y5SBvJ2231jDdnoEr4uZ479fAa2AoICcBkrQeC/9aTt0/cD3EUR2yU=
+    on_pull_requests: false
+    on_success: always
+    on_failure: always

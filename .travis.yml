@@ -16,7 +16,7 @@ install:
 script:
   - mvn test jacoco:report
 after_success:
-  - mvn clean org.eluder.coveralls:coveralls-maven-plugin:report -DrepoToken=$COVERALLS_TOKEN
+  - mvn coveralls:report -DrepoToken=$COVERALLS_TOKEN
 notifications:
   slack:
     secure: ODdQeRbb9VyARL2zS5vuZCkzawb+fFYkT9uJWQ+m0bC0kZe53YjNCMXNTbJJcfv3sxLObAh1LYcpRjdScEcMMa0uzHYV7zuncsdcxzepF9Esbau9IWQ/B2CgDkCZXTH0tTK9TKDONn6g2DLX0seufzodNV+PTLAsiOfF1Bnj3mC01TeZFltbNWp+4zH2rs9oq+AHskjnXQevczA21W+Fg4d5tW+QEUtihDcgG6uEdjyCvygqG2sSpzhPVbYhuHbm0/tEO9LYs7EO7Qu8JWf+TBv6toxibAFLr/mbdJqEC/+5QefT2YXgOiNlXlD+qwHfa9YRs9wldhCxbEnL1DHkWPMIodwO0jmC7mZSPdJsINZVJJZkWvP+OzK/MOHiS8MecMDd/fHhlTTJiH2/LJ+LCNejf4DCjulCQnF8Y+VWrJPymU8F3msHHPbVIRUflLmYPXW+GUlVD/xGTZ50kVp39vMppGjxjNxjpR/XBz5TGxF38nFGB0la1KgkXyD0jdWrJ5apy++DbDW6Zp/NzriYS5jgsKn03i2nh6KZTim3phy6CjnonbYrimNhZyqdpd5KrcYltsRtIaG9h538RwrpEwzZSJk1ktMdQTy8kJP+24QwctEPgQAbZYklvdVgcy3rvXHjwaD+P6XXGR2N7bPks+lhEkxQfAXkYedGrHpwRnU=

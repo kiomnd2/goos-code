@@ -21,7 +21,7 @@ install:
 script:
   - mvn clean install jacoco:report
 after_success:
-  - mvn sonar:sonar
+  - mvn sonar:sonar -Dsonar.projectKey=antop-dev_goos-code -Dsonar.host.url=https://sonarcloud.io
   - mvn coveralls:report -DrepoToken=$COVERALLS_TOKEN
 notifications:
   slack:

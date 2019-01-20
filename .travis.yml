@@ -3,7 +3,8 @@ dist: trusty
 addons:
   sonarcloud:
     organization: "antop-dev-github"
-    token: dba57055f13a46bda937360d29dbc60836b1554b
+    token:
+      - secure: a23RrB3J8ljM5wJ74Zly1RL51f7YV4Eb/59/yrp9CW5cKI5JR0BaUwccMka3OrAwgXgpeeR5VZCe1M1N/DyinYQokrWE54Mhx5wOkTW9IV20TVrtTpDX6HaiBoWsd5ci0Z24YlOu821S0VokBsCE4v9DtXdKkTH5GVUuBbqbDqQU1DY4zNPToqWdgtPMCw2HBoSnTsJjJ7Vemw2AcVJ6u1vALMiWP7/0oyF28ngFCFjGkfEbhOspeQmoLwjv2ilZiGk5ImNN+of7QNmPDHqfEV/F3W6XsX+/fgjhOndpiiO6D8N/Wb7Uqt/FNhx+rv42WC5c+ru5qMPhjQHvfYPC3x9bHnP8E0zygDZZGFo+mqeiNzThCZbNIi9w0/NaFFqEmiDcx8x9jJmP1qIbMz0Zo1L0svKjKbl/xfYY0mjjHf3jzXkzbJ4Z9SCAnb++aTQ91s4r4Q4bBsmpSWvGAUcfE2SvhiUO93uPKy8wRZaPNseRKjhPiITDbXMb6MukdwhUsVMya1DQQGHkVYdOHeQ/SxpHOWsltFpLU5gGnC+fhKrgCMEJHnCKW5FqfP6iKKCmR+Pa6NFzwQfKNlUUsqm/M4U7Tj6IOm8QBKrRcW07cfNBTCo1Zfs9VoQfk1CMeo6CW7KYlbS2aVf6sXOVPY0QAAppMovHqxsonvUlZgpZWM8=
 jdk:
   - openjdk8
 branches:
@@ -18,11 +19,10 @@ before_script:
 install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  # - mvn package jacoco:report
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn clean install jacoco:report
 after_success:
+  - mvn sonar:sonar
   - mvn coveralls:report -DrepoToken=$COVERALLS_TOKEN
-  - mvn clean
 notifications:
-  slack: any-study:BvfF5AJsm1wdcEG5l41UuoUj
-    # -secure: KH8z/un/q8gbYnI9REwaande3ukpwD3OgFaun7DG/1KV0W2SnJkdUI6U0NH1uzUCCY8ZbAbJ+HfrTNwWrh1sDzJKk8UbWFmM7douA9DFBISBfHVzhdg6HUqEbvw+H3KAp7DIo95IcsMLIK6YLcaicAFKop8Q67neFlpq8t5LiPQh+0ZsfIyc5shiMNEPtKTcZjXryS3RwvBGn8PZpPhTcybTeLmlz8siPn2zaRMawX/K2hjW41JNjluQovL4xXuzAW6YQGnGHM2DRP/U6TQ8VcW0j0gamNm49hqAcWwzZ14OsoWvFbEVDQrTXVKAq0WCTUbm1kJSUTNAQVoKvCjCZXY5paoL7FMY5ClII/Z9lN00UcQcNkh49N37KVZjiud9/DLn7ihXWKKpoi997ayDLSKtgDo8EqKGYS8RjyzPw0JFVLgjs7L+z9+IHETr0vnK6JwkhOQNxeECYN9jjGEdvphBf3J0WfY29s4fRnv4CXemM1FAdbaqNmiCphJRbHz6Y49n+kZZnxFOWLl7rw1nqnnkPHMgJbdEexQvt1Vb9qgFJBRBVhiR+wLlqRbnl1+1YdsMXlCfbx8nhSQ7J69cxOAXutupPXkApqkdM+CEqOkxU2Y2qzsu4QnwK31kuG6GRC7yFCzUu2nGDI56B2q3B6eu5KOHZqBPK2rvxZ2L6KU=
+  slack:
+    - secure: secure: qyUid2Qef2MdmJV/q6YfyqELsIztbndxeWCE2mucRBC/OhnFRsiAje99O7A8wPSIG/YJh8nBqabA2rRm+X09JJx6N8DqHo5XA0L1A0/PEfEvi4h4zHcsVzt9jdbCe/G6/ouR4oyM4fIYtu+aV8XU/dyT4x5PrykwvAM9N0KcQTSYEjWRluEQnjLqPIPBrEwPpKkF69COtCN39rk1hEiFf+bJHI8amCODSnmk6Nq2DzLpkCvlsuXGPH34ImYxISTJsyZBKeQf3gCREJqQckaVLJXwl43/mKZ0bfmdpEC3A/J0d+jELQ2jnfAIZLiOgCe20NQt/t7HRLPY/DxfXvJzl8XPKr7RR4FywgaXbfLqYfmpWnLyXbcNZIJMeooL2gt92dR2rb0r7hmiIWSoRfe25k9V1V8h7Ax7/0pUj4feDhEGcrgnFMqM9MijT9Ty4P77DAZUZFzg/W7XrPjfmjL9tF18Xk3jJzX74buTC/hVdPewRR+AUsGYVqdSTbtwIn3EFhn4eGEni74txOC+t/kJ6EG+Af3i4rvMAYMZbu6CGLAUGRFeOxNPdw1KeuHsTa1Sgsy+nDRMzJMV8vKl0LhRcHPC1qX7eQzxmK56M2g/sDRju4a7mKvUyaW1/JSsFuOv6mF03OU3W0BYneO+eCYNHdetV8s6gB7dpvibs9AX4GM=

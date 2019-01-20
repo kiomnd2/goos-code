@@ -1,36 +1,27 @@
 language: java
-
 dist: trusty
-
 addons:
   sonarcloud:
-    organization: "antop-dev-github"
-
+    organization: antop-dev-github
 jdk:
   - openjdk8
-
 branches:
   only:
     - master
-
 cache:
   directories:
     - "$HOME/.m2"
-
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-
 install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
 script:
   - mvn clean package jacoco:report
-
 after_success:
   - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.projectKey=$SONAR_PROJECT_KEY
   - mvn coveralls:report -DrepoToken=$COVERALLS_TOKEN
-
 notifications:
   email: false
-  slack: any-study:2xBdx3Es9OghUSXme1ygGW8W
+  slack:
+    secure: b8ypMuF5uSwyozVcXR8xrHSrak08IqqdxfZSO74qyLK3VpyUvUvSwDbm+t6NzBysksgIuNm2UEP7IP+RJprQ43LJzqxO2H9fT75tRGNNE7b3geTOjlmRQxAgW6hPKVaGORmiaarHPNDoNA4Vq6peiWNT0WoPD5VSR0ltY0odrN+O/mf8FwiN72dmLTNXoVLG9Ugz/uA+YWbDLm0pp9ZAAV38U7QILH7rWUYUyfWBgGGGPL3wmtHi6Cp1HnJG/PWA1SlIbtmBpV8U/Di1iSPJKlqcHgCxQeZXK6sWoQ/whDTV1gBjqjx9cgQ9B949SrDumdAk0VaUTo8O/X8yN1FfusW4uxBZE28LYdfsUTvJI26dzlIDRNpcna9Iuxrj+lHyaf+yq268csK16rTNi7AJZ9ipMAJhRyCjBw5TBPTEAWiBEUxTgRVoOP4sWz+XcH4LxOLgfXeCZ6AdYzrD42CPtN1fzpGc+rjsX6V9xzAzH/wzDCGEfXihNoA72XEGiA01Iyut7sJGZpG9TDi6LLCgc6zpshBtMBcG+pptIGuTnCHmHehDxhRj1ht4OeF1Yr6jQjriQPWWGPJ5FRFxOYTE1htrCY/aHub+I9SCM5XFiLBmPthDwKw2QZL0+5sK+3E0VNhpFnULy9016SQeg3LwWrU7g2I9/xA4uFP1HiuOx3o=

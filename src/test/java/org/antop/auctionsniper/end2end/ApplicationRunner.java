@@ -1,10 +1,12 @@
-package org.antop.auctionsniper;
+package org.antop.auctionsniper.end2end;
 
+import org.antop.auctionsniper.Main;
 import org.antop.auctionsniper.ui.MainWindow;
 
 public class ApplicationRunner {
     public static final String SNIPER_ID = "sniper";
     public static final String SNIPER_PASSWORD = "sniper";
+    public static final String SNIPER_XMPP_ID = "sniper@localhost/Auction";
     private AuctionSniperDriver driver;
 
     public void startBiddingIn(final FakeAuctionServer auction) {
@@ -26,6 +28,10 @@ public class ApplicationRunner {
         driver.showsSniperStatus(MainWindow.STATUS_JOINING);
     }
 
+    public void hasShownSniperIsBidding() {
+        driver.showsSniperStatus(MainWindow.STATUS_BIDDING);
+    }
+
     public void showsSniperHasLostAuction() {
         driver.showsSniperStatus(MainWindow.STATUS_LOST);
     }
@@ -35,4 +41,5 @@ public class ApplicationRunner {
             driver.dispose();
         }
     }
+
 }

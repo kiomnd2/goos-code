@@ -1,9 +1,10 @@
-package org.antop.auctionsniper;
+package org.antop.auctionsniper.end2end;
 
 import com.objogate.wl.swing.AWTEventQueueProber;
 import com.objogate.wl.swing.driver.JFrameDriver;
 import com.objogate.wl.swing.driver.JLabelDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
+import org.antop.auctionsniper.Main;
 import org.antop.auctionsniper.ui.MainWindow;
 import org.hamcrest.CoreMatchers;
 

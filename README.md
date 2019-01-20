@@ -51,3 +51,17 @@ Server &gt; Server Setting &gt; Resource Policy
 [The Travis Client](https://github.com/travis-ci/travis.rb)
 
 [mockito](https://github.com/mockito/mockito)
+
+## Issues
+
+```
+couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind
+```
+
+[openfire - couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind - Stack Overflow](https://stackoverflow.com/questions/10517518/couldnt-setup-local-socks5-proxy-on-port-7777-address-already-in-use-jvm-bind)
+
+내 개발 PC에서 Openfire 서버와 Smack 클라이언트를 같이 사용할 경우 파일 전송용 포트(7777)를 같이 사용하면서 나는 에러이다.
+
+Server &gt; Server Settings &gt; FIle Transfer Settings 에서 포트를 변경하거나 비활성화 한다.
+
+![Imgur](https://i.imgur.com/6vNpAb8.png)

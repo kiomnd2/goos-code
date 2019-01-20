@@ -6,7 +6,7 @@ import org.antop.auctionsniper.ui.MainWindow;
 public class ApplicationRunner {
     public static final String SNIPER_ID = "sniper";
     public static final String SNIPER_PASSWORD = "sniper";
-    public static final String SNIPER_XMPP_ID = "sniper@localhost/Auction";
+    public static final String SNIPER_XMPP_ID = "sniper@antop.org/Auction";
     private AuctionSniperDriver driver;
 
     public void startBiddingIn(final FakeAuctionServer auction) {

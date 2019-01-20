@@ -33,4 +33,4 @@ after_success:
 
 notifications:
   email: false
-  slack: 2xBdx3Es9OghUSXme1ygGW8W
+  slack: any-study:2xBdx3Es9OghUSXme1ygGW8W

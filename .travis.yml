@@ -1,5 +1,10 @@
 language: java
 dist: trusty
+addons:
+  sonarcloud:
+    organization: "antop-dev-github"
+    token:
+      secure: vMihYcRmsCtepJglhTjrb+fh3rL+ryFv4y7ZlIFeiX0/787u7BebxFLga2wprg+D8TPxgjq8cMnYnIhstNep3zJFrKObazFmvDMgVVxwThGJ1aJtahTFx8EyCex+c6HQl5KK+7gosC355pZMxU0RHeDKF4ZzzTuzzf1Sy81O7MXGxIp9pRgq7ZG/se7o34ghMjhya85G7ZVlOQHSjGgM5/qghsHag08ghInle6e8CSXqANJ6LGwSdNIYIUsczliXITXnSj2w4L+hfvYo7vybG/ra1TYVl6PdJ8ob8Z7jMUBVNxin0fUCun0G+Z21ZcYxajbPBK3dr995e7xcjLzmta/2CIzLRWlrh4ie0mPnScwduRNMUxPy73k3GY6FHhG4+CA83q3smH1rRi/GvxyUMfUsOSAVqUT4Vf9fUrgi+3wuJtXuVhEwDvspEZhRfhRFHuD5hS6TjF9m9QGuJ110IsObHI8t4vb3rdXF5UJKeafjtF4ok4uqUB17asFStuMkmKCdDj7vPgtAfZxATIEmYM6oznMHeVW0tzKDGxIkJVydppT2gZpSjxMp2tA6FeOM4w8slZI6uWKrOfz7AD30DV3aHVq3H/EfaztDaDi2qvgqYQxw8BamykdG2lloHArIVFrv5C66G1edzK1ooxAuIg8ULIkxmwK0RjWhm9F80jQ=
 jdk:
   - openjdk8
 branches:
@@ -14,10 +19,11 @@ before_script:
 install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn test jacoco:report
+  # - mvn package jacoco:report
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 after_success:
-  - mvn sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAL_LOGIN
   - mvn coveralls:report -DrepoToken=$COVERALLS_TOKEN
+  - mvn clean
 notifications:
-  slack:
-    - secure: KH8z/un/q8gbYnI9REwaande3ukpwD3OgFaun7DG/1KV0W2SnJkdUI6U0NH1uzUCCY8ZbAbJ+HfrTNwWrh1sDzJKk8UbWFmM7douA9DFBISBfHVzhdg6HUqEbvw+H3KAp7DIo95IcsMLIK6YLcaicAFKop8Q67neFlpq8t5LiPQh+0ZsfIyc5shiMNEPtKTcZjXryS3RwvBGn8PZpPhTcybTeLmlz8siPn2zaRMawX/K2hjW41JNjluQovL4xXuzAW6YQGnGHM2DRP/U6TQ8VcW0j0gamNm49hqAcWwzZ14OsoWvFbEVDQrTXVKAq0WCTUbm1kJSUTNAQVoKvCjCZXY5paoL7FMY5ClII/Z9lN00UcQcNkh49N37KVZjiud9/DLn7ihXWKKpoi997ayDLSKtgDo8EqKGYS8RjyzPw0JFVLgjs7L+z9+IHETr0vnK6JwkhOQNxeECYN9jjGEdvphBf3J0WfY29s4fRnv4CXemM1FAdbaqNmiCphJRbHz6Y49n+kZZnxFOWLl7rw1nqnnkPHMgJbdEexQvt1Vb9qgFJBRBVhiR+wLlqRbnl1+1YdsMXlCfbx8nhSQ7J69cxOAXutupPXkApqkdM+CEqOkxU2Y2qzsu4QnwK31kuG6GRC7yFCzUu2nGDI56B2q3B6eu5KOHZqBPK2rvxZ2L6KU=
+  slack: any-study:BvfF5AJsm1wdcEG5l41UuoUj
+    # -secure: KH8z/un/q8gbYnI9REwaande3ukpwD3OgFaun7DG/1KV0W2SnJkdUI6U0NH1uzUCCY8ZbAbJ+HfrTNwWrh1sDzJKk8UbWFmM7douA9DFBISBfHVzhdg6HUqEbvw+H3KAp7DIo95IcsMLIK6YLcaicAFKop8Q67neFlpq8t5LiPQh+0ZsfIyc5shiMNEPtKTcZjXryS3RwvBGn8PZpPhTcybTeLmlz8siPn2zaRMawX/K2hjW41JNjluQovL4xXuzAW6YQGnGHM2DRP/U6TQ8VcW0j0gamNm49hqAcWwzZ14OsoWvFbEVDQrTXVKAq0WCTUbm1kJSUTNAQVoKvCjCZXY5paoL7FMY5ClII/Z9lN00UcQcNkh49N37KVZjiud9/DLn7ihXWKKpoi997ayDLSKtgDo8EqKGYS8RjyzPw0JFVLgjs7L+z9+IHETr0vnK6JwkhOQNxeECYN9jjGEdvphBf3J0WfY29s4fRnv4CXemM1FAdbaqNmiCphJRbHz6Y49n+kZZnxFOWLl7rw1nqnnkPHMgJbdEexQvt1Vb9qgFJBRBVhiR+wLlqRbnl1+1YdsMXlCfbx8nhSQ7J69cxOAXutupPXkApqkdM+CEqOkxU2Y2qzsu4QnwK31kuG6GRC7yFCzUu2nGDI56B2q3B6eu5KOHZqBPK2rvxZ2L6KU=

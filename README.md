@@ -4,6 +4,7 @@
 ![License](https://img.shields.io/github/license/antop-dev/goos-code.svg)
 [![Build Status](https://travis-ci.com/antop-dev/goos-code.svg?branch=master)](https://travis-ci.com/antop-dev/goos-code)
 [![Coverage Status](https://coveralls.io/repos/github/antop-dev/goos-code/badge.svg?branch=master)](https://coveralls.io/github/antop-dev/goos-code?branch=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_goos-code&metric=alert_status)](https://sonarcloud.io/dashboard?id=antop-dev_goos-code)
 
 # goods-code
 

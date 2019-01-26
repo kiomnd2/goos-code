@@ -54,7 +54,7 @@ public class FakeAuctionServer {
 	}
 
 	public void announceClosed() throws XMPPException {
-		currentChat.sendMessage("SQLVersion: 1.1; Event: CLOSE;");
+		currentChat.sendMessage("SOLVersion: 1.1; Event: CLOSE;");
 	}
 
 	public void stop() {
@@ -66,7 +66,7 @@ public class FakeAuctionServer {
 	}
 
 	public void reportPrice(int price, int increment, String bidder) throws XMPPException {
-		currentChat.sendMessage(String.format("SQLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s;", price, increment, bidder));
+		currentChat.sendMessage(String.format("SOLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s;", price, increment, bidder));
 	}
 
 	private class SingleMessageListener implements MessageListener {

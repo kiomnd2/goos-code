@@ -19,7 +19,7 @@ public class AuctionMessageTranslatorTest {
 	@Test
 	public void notifiesAuctionClosedWhenCloseMessageReceived() {
 		Message message = new Message();
-		message.setBody("SQLVersion: 1.1; Event: CLOSE;");
+		message.setBody("SOLVersion: 1.1; Event: CLOSE;");
 
 		translator.processMessage(UNUSED_CHAT, message);
 
@@ -29,7 +29,7 @@ public class AuctionMessageTranslatorTest {
 	@Test
 	void notifiesBidDetailsWhenCurrentPriceMessageReceived() {
 		Message message = new Message();
-		message.setBody("SQLVersion: 1.1; Event: PRICE; CurrentPrice: 192; Increment: 7; Bidder: Someone else;");
+		message.setBody("SOLVersion: 1.1; Event: PRICE; CurrentPrice: 192; Increment: 7; Bidder: Someone else;");
 
 		translator.processMessage(UNUSED_CHAT, message);
 

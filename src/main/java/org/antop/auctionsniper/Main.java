@@ -9,9 +9,9 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Main implements AuctionEventListener {
-	public static final String JOIN_COMMAND_FORMAT = "SQLVersion: 1.1; Command: JOIN;";
-	public static final String BID_COMMAND_FORMAT = "SQLVersion: 1.1; Command: BID; Price: %d;";
+public class Main {
+	public static final String JOIN_COMMAND_FORMAT = "SOLVersion: 1.1; Command: JOIN;";
+	public static final String BID_COMMAND_FORMAT = "SOLVersion: 1.1; Command: BID; Price: %d;";
 
 	private static final int ARG_HOSTNAME = 0;
 	private static final int ARG_USERNAME = 1;
@@ -40,15 +40,16 @@ public class Main implements AuctionEventListener {
 	}
 
 	private void joinAuction(XMPPConnection connection, String itemId) throws XMPPException {
+
 		disconnectWhenUICloses(connection);
-		Chat chat = connection.getChatManager().createChat(
-				auctionId(itemId, connection),
-				new AuctionMessageTranslator(this)
-		);
+
+		Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection), null);
 		// don't GC target
 		this.notToBeGCd = chat;
 
-		chat.sendMessage(JOIN_COMMAND_FORMAT);
+		Auction auction = new XMPPAuction(chat);
+		chat.addMessageListener(new AuctionMessageTranslator(new AuctionSniper(auction, new SniperStateDisplayer())));
+		auction.join();
 	}
 
 	private void disconnectWhenUICloses(final XMPPConnection connection) {
@@ -72,13 +73,26 @@ public class Main implements AuctionEventListener {
 		return String.format(AUCTION_ID_FORMAT, itemId, connection.getServiceName());
 	}
 
-	@Override
-	public void auctionClosed() {
-		SwingUtilities.invokeLater(() -> ui.showStatus(MainWindow.STATUS_LOST));
+	private class SniperStateDisplayer implements SniperListener {
+
+		@Override
+		public void sniperLost() {
+			showStatus(MainWindow.STATUS_LOST);
+		}
+
+		@Override
+		public void sniperBidding() {
+			showStatus(MainWindow.STATUS_BIDDING);
+		}
+
+		@Override
+		public void sniperWinning() {
+			showStatus(MainWindow.STATUS_WINNING);
+		}
+
+		private void showStatus(final String status) {
+			SwingUtilities.invokeLater(() -> ui.showStatus(status));
+		}
 	}
 
-	@Override
-	public void currentPrice(int price, int increment) {
-
-	}
 }

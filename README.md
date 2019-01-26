@@ -36,6 +36,20 @@ Server &gt; Server Setting &gt; Resource Policy
 
 ![Imgur](https://i.imgur.com/AGS3Wsf.png)
 
+## Issues
+
+```
+couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind
+```
+
+[openfire - couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind - Stack Overflow](https://stackoverflow.com/questions/10517518/couldnt-setup-local-socks5-proxy-on-port-7777-address-already-in-use-jvm-bind)
+
+내 개발 PC에서 Openfire 서버와 Smack 클라이언트를 같이 사용할 경우 파일 전송용 포트(7777)를 같이 사용하면서 나는 에러이다.
+
+Server &gt; Server Settings &gt; FIle Transfer Settings 에서 포트를 변경하거나 비활성화 한다.
+
+![Imgur](https://i.imgur.com/6vNpAb8.png)
+
 ## Reference
 
 [JUnit 5 Tutorial: Running Unit Tests With Maven](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-running-unit-tests-with-maven/)
@@ -52,16 +66,8 @@ Server &gt; Server Setting &gt; Resource Policy
 
 [mockito](https://github.com/mockito/mockito)
 
-## Issues
+[jMock versus Mockito](https://zsoltfabok.com/blog/2010/08/jmock-versus-mockito/)
 
-```
-couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind
-```
+[Mockito vs EasyMock vs JMockit](https://www.baeldung.com/mockito-vs-easymock-vs-jmockit)
 
-[openfire - couldn't setup local SOCKS5 proxy on port 7777: Address already in use: JVM_Bind - Stack Overflow](https://stackoverflow.com/questions/10517518/couldnt-setup-local-socks5-proxy-on-port-7777-address-already-in-use-jvm-bind)
-
-내 개발 PC에서 Openfire 서버와 Smack 클라이언트를 같이 사용할 경우 파일 전송용 포트(7777)를 같이 사용하면서 나는 에러이다.
-
-Server &gt; Server Settings &gt; FIle Transfer Settings 에서 포트를 변경하거나 비활성화 한다.
-
-![Imgur](https://i.imgur.com/6vNpAb8.png)
+[Skipping a CI Build for non-code changes](https://reflectoring.io/skip-ci-build/)

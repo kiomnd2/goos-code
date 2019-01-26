@@ -7,10 +7,14 @@ import org.jivesoftware.smack.packet.Message;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.antop.auctionsniper.AuctionEventListener.*;
+
 public class AuctionMessageTranslator implements MessageListener {
+	private final String sniperId;
 	private final AuctionEventListener listener;
 
-	public AuctionMessageTranslator(AuctionEventListener listener) {
+	public AuctionMessageTranslator(String sniperId, AuctionEventListener listener) {
+		this.sniperId = sniperId;
 		this.listener = listener;
 	}
 
@@ -23,7 +27,7 @@ public class AuctionMessageTranslator implements MessageListener {
 				listener.auctionClosed();
 				break;
 			case "PRICE":
-				listener.currentPrice(event.currentPrice(), event.increment());
+				listener.currentPrice(event.currentPrice(), event.increment(), event.isFrom(sniperId));
 				break;
 			default:
 				break;
@@ -43,6 +47,14 @@ public class AuctionMessageTranslator implements MessageListener {
 
 		public int increment() {
 			return getInt("Increment");
+		}
+
+		public PriceSource isFrom(String sniperId) {
+			return sniperId.equals(bidder()) ? PriceSource.FromSniper : PriceSource.FromOtherBidder;
+		}
+
+		private String bidder() {
+			return get("Bidder");
 		}
 
 		private String get(String fieldName) {
